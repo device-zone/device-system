@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #
 # System Status
@@ -7,22 +7,6 @@
 # This script generates a dynamic status of the configuration.
 
 set -e
-
-
-#
-# Handle the cleanup
-# ------------------
-cleanup_before_exit () {
-  if [ -d "${tmpdir}" ]; then
-    rm -rf "${tmpdir}"
-  fi
-}
-# be in a temporary workspace (this works on linux and macosx)
-tmpdir=`mktemp -d 2>/dev/null || mktemp -d -t 'tmpdir'`
-# trap catches the exit signal and runs the specified function
-trap cleanup_before_exit EXIT
-# be in our directory
-cd "${tmpdir}"
 
 
 echo
