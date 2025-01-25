@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#
+# Handle systemd state
+
+if systemctl is-system-running --quiet; then
+
+  green=`tput setaf 2`
+  reset=`tput sgr0`
+
+  echo "System:"
+  echo "- state: ${green}$(systemctl show --property=SystemState --value)${reset}"
+
+else
+
+  red=`tput setaf 1`
+  reverse=`tput rev`
+  reset=`tput sgr0`
+
+  echo "System:"
+  echo "- state: ${reverse}${red}$(systemctl show --property=SystemState --value)${reset}"
+
+fi
+

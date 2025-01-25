@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#
+# Handle systemd activating
+
+if test "$(systemctl show --property=SystemState --value)" = "starting"; then
+
+  blue=`tput setaf 4`
+  reverse=`tput rev`
+  reset=`tput sgr0`
+
+  echo
+  echo "  Activating services:"
+
+  /usr/bin/systemctl list-units --state activating --output json | jq -r ".[] | \"    ${blue}\" + (.unit) + \"${reset}: \" + (.description)"
+
+fi
+

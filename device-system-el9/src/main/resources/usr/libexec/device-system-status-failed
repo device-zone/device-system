@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#
+# Handle systemd failed
+
+if systemctl is-failed --quiet '*'; then
+
+  red=`tput setaf 1`
+  reverse=`tput rev`
+  reset=`tput sgr0`
+
+  echo
+  echo "  Failed services:"
+
+  /usr/bin/systemctl list-units --state failed --output json | jq -r ".[] | \"    ${red}\" + (.unit) + \"${reset}: \" + (.description)"
+
+fi
+
