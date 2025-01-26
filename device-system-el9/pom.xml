@@ -139,6 +139,10 @@
                   <destination>30-failed</destination>
                 </source>
                 <source>
+                  <location>target/classes/usr/libexec/device-system-status-auto-restart</location>
+                  <destination>40-auto-restart</destination>
+                </source>
+                <source>
                   <location>target/classes/usr/libexec/device-system-status-state</location>
                   <destination>10-state</destination>
                 </source>

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#
+# Handle systemd auto-restart
+
+red=`tput setaf 1`
+reverse=`tput rev`
+reset=`tput sgr0`
+
+autorestart=$(/usr/bin/systemctl list-units --state auto-restart --output json | jq -r ".[] | \"    ${red}\" + (.unit) + \"${reset}: \" + (.description)")
+
+if test -n "${autorestart}"; then
+
+  echo
+  echo "  Failed services (auto-restart):"
+  echo "${autorestart}"
+
+fi
+
